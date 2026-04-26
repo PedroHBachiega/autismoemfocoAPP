@@ -94,8 +94,9 @@ class MeusAgendamentosPage extends StatelessWidget {
     }
 
     Color statusColor = Colors.orange;
-    if (status == 'Confirmado') statusColor = Colors.green;
-    else if (status == 'Cancelado') statusColor = Colors.red;
+    if (status == 'Confirmado') {
+      statusColor = Colors.green;
+    } else if (status == 'Cancelado') statusColor = Colors.red;
     else if (status == 'Realizado') statusColor = Colors.blue;
 
     return Card(
