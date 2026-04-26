@@ -41,8 +41,9 @@ class PostDetailPage extends StatelessWidget {
           final theme = Theme.of(context);
           
           Color catColor = theme.primaryColor;
-          if (category == 'Dúvidas') catColor = Colors.orange;
-          else if (category == 'Conquistas') catColor = Colors.green;
+          if (category == 'Dúvidas') {
+            catColor = Colors.orange;
+          } else if (category == 'Conquistas') catColor = Colors.green;
           else if (category == 'Desabafos') catColor = Colors.purple;
           else if (category == 'Inclusão') catColor = Colors.blue;
           else if (category == 'Direitos') catColor = Colors.red;

@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
 
           // Community Section
           Container(
-            color: colorScheme.surfaceVariant.withOpacity(0.5),
+            color: colorScheme.surfaceContainerHighest.withOpacity(0.5),
             padding: const EdgeInsets.all(24.0),
             child: Column(
               children: [

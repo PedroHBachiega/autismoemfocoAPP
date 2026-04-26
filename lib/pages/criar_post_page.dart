@@ -93,7 +93,7 @@ class _CriarPostPageState extends State<CriarPostPage> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: _category,
+                initialValue: _category,
                 decoration: const InputDecoration(
                   labelText: 'Categoria',
                   border: OutlineInputBorder(),

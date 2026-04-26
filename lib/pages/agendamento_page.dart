@@ -178,7 +178,7 @@ class _AgendamentoPageState extends State<AgendamentoPage> {
               const SizedBox(height: 24),
 
               DropdownButtonFormField<String>(
-                value: _especialidade,
+                initialValue: _especialidade,
                 decoration: const InputDecoration(labelText: 'Especialidade', border: OutlineInputBorder()),
                 items: _especialidades.map((esp) => DropdownMenuItem(value: esp, child: Text(esp))).toList(),
                 onChanged: (val) {
@@ -193,7 +193,7 @@ class _AgendamentoPageState extends State<AgendamentoPage> {
               const SizedBox(height: 16),
 
               DropdownButtonFormField<String>(
-                value: _profissionalId,
+                initialValue: _profissionalId,
                 decoration: const InputDecoration(labelText: 'Profissional', border: OutlineInputBorder()),
                 items: availableProfs.map((prof) => DropdownMenuItem(value: prof['id'], child: Text(prof['name']!))).toList(),
                 onChanged: (val) => setState(() => _profissionalId = val),
