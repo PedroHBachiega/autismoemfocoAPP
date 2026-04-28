@@ -10,7 +10,19 @@ class AppScaffold extends StatelessWidget {
 
   const AppScaffold({super.key, required this.child});
 
+   int _getCurrentIndex(BuildContext context) {
+    final location = GoRouterState.of(context).uri.toString();
+
+    if (location == '/') return 0;
+    if (location.startsWith('/eventos')) return 1;
+    if (location.startsWith('/comunidade')) return 2;
+    if (location.startsWith('/profile')) return 3;
+
+    return 0;
+  }
+
   @override
+
   Widget build(BuildContext context) {
     final isDark = context.select((ThemeProvider theme) => theme.isDark);
     final isLoggedIn = context.select((AuthProvider auth) => auth.user != null);
@@ -91,6 +103,7 @@ class AppScaffold extends StatelessWidget {
       ),
       body: child,
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _getCurrentIndex(context),
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
