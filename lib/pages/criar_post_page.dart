@@ -46,6 +46,7 @@ class _CriarPostPageState extends State<CriarPostPage> {
         'title': _title,
         'content': _content,
         'category': _category,
+        'uid': user.uid,
         'authorId': user.uid,
         'authorName': user.displayName ?? 'Usuário Anônimo',
         'createdAt': FieldValue.serverTimestamp(),

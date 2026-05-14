@@ -1,12 +1,13 @@
+import 'dart:io' show Platform; // Necessário para checar Windows
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:google_sign_in/google_sign_in.dart' as gAuth;
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthProvider with ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  // final gAuth.GoogleSignIn _googleSignIn = gAuth.GoogleSignIn(scopes: ['email']);
+  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
 
   User? _user;
   Map<String, dynamic>? _userProfile;
@@ -75,38 +76,56 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  /// IMPLEMENTAÇÃO DO LOGIN COM GOOGLE
   Future<bool> loginWithGoogle() async {
-    _actionLoading = true;
-    _error = null;
-    notifyListeners();
+  _actionLoading = true;
+  _error = null;
+  notifyListeners();
 
     try {
-      /* Google Sign In disable temporarily - package conflict/windows compatibility
-      final gAuth.GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (!kIsWeb && Platform.isWindows) {
+        _error = "O login com Google não é compatível com Windows.";
+        _actionLoading = false;
+        notifyListeners();
+        return false;
+      }
+
+      await _googleSignIn.initialize(
+        serverClientId: '241125743479-licc615o5efem7rfhqo92ik4ki5b94gs.apps.googleusercontent.com',
+      );
+                      
+      // NESSA VERSÃO (7.2.0) O COMANDO É .authenticate()
+      final GoogleSignInAccount? googleUser = await _googleSignIn.authenticate();
+      
       if (googleUser == null) {
         _actionLoading = false;
         notifyListeners();
         return false;
       }
-      final gAuth.GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      // O resto continua igual...
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
+
       final UserCredential cred = await _auth.signInWithCredential(credential);
       final User user = cred.user!;
+
       final profile = await _fetchUserProfile(user.uid);
       if (profile == null) {
         await _createInitialProfile(user);
         await _fetchUserProfile(user.uid);
       }
-      */
-      
-      _error = "Login com Google temporariamente indisponível.";
+
       _actionLoading = false;
       notifyListeners();
-      return false;
+      return true;
+
     } catch (e) {
+      print("================ ERRO REAL DO GOOGLE ================");
+      print(e.toString()); 
       _error = "Falha no login com Google: $e";
       _actionLoading = false;
       notifyListeners();
@@ -128,8 +147,9 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> logout() async {
+    // Agora desloga de ambos para permitir trocar de conta Google depois
     await _auth.signOut();
-    // await _googleSignIn.signOut();
+    await _googleSignIn.signOut();
     _user = null;
     _userProfile = null;
     notifyListeners();

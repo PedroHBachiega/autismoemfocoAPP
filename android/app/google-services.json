@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "241125743479",
+    "project_id": "autismoemfoco-9117e",
+    "storage_bucket": "autismoemfoco-9117e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241125743479:android:c51cea162598c60d5b1f72",
+        "android_client_info": {
+          "package_name": "com.example.autismo_em_foco_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241125743479-1bt3v3upbri2ffboiameuilrrvl8etsj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.autismo_em_foco_flutter",
+            "certificate_hash": "f46ac447d0bf2eb37166791604371f9d9db2f1f4"
+          }
+        },
+        {
+          "client_id": "241125743479-licc615o5efem7rfhqo92ik4ki5b94gs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb4QtZ7LczWUh-p3rZjvfd5p31PJDxuNA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241125743479-licc615o5efem7rfhqo92ik4ki5b94gs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
