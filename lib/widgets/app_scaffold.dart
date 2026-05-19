@@ -15,8 +15,9 @@ class AppScaffold extends StatelessWidget {
 
     if (location == '/') return 0;
     if (location.startsWith('/eventos')) return 1;
-    if (location.startsWith('/comunidade')) return 2;
-    if (location.startsWith('/profile')) return 3;
+    if (location.startsWith('/agendamento')) return 2;
+    if (location.startsWith('/comunidade')) return 3;
+    if (location.startsWith('/profile')) return 4;
 
     return 0;
   }
@@ -91,6 +92,14 @@ class AppScaffold extends StatelessWidget {
               },
             ),
             ListTile(
+              leading: const Icon(Icons.event_available),
+              title: const Text('Meus Agendamentos'),
+              onTap: () {
+                context.pop();
+                context.go('/meus-agendamentos');
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.group),
               title: const Text('Sobre a Equipe'),
               onTap: () {
@@ -115,6 +124,10 @@ class AppScaffold extends StatelessWidget {
             label: 'Eventos',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.person_search),
+            label: 'Agendar',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.forum),
             label: 'Comunidade',
           ),
@@ -132,10 +145,13 @@ class AppScaffold extends StatelessWidget {
             case 1:
               context.go('/eventos');
               break;
-            case 2:
-              context.go('/comunidade');
+              case 2:
+              context.go('/agendamento');
               break;
             case 3:
+              context.go('/comunidade');
+              break;
+            case 4:
               context.go('/profile');
               break;
           }
