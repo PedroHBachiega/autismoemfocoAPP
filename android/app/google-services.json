@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "241125743479-1bt3v3upbri2ffboiameuilrrvl8etsj.apps.googleusercontent.com",
+          "client_id": "241125743479-p155slo1gpbvkcaf94j6jmp76a8n3bmp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.autismo_em_foco_flutter",
-            "certificate_hash": "f46ac447d0bf2eb37166791604371f9d9db2f1f4"
+            "certificate_hash": "72626f1940a52ba4a3730e3493dc11b0c1d7073f"
           }
         },
         {

@@ -26,7 +26,7 @@ class SobrePage extends StatelessWidget {
             const Text(
               'Somos um grupo de estudantes dedicados a criar ferramentas e promover a conscientização sobre o Transtorno do Espectro Autista. Nosso objetivo é facilitar o acesso à informação, apoio e serviços, através de tecnologia de ponta.',
               style: TextStyle(fontSize: 16, height: 1.5),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.justify,
             ),
             const SizedBox(height: 32),
             Wrap(
@@ -37,7 +37,7 @@ class SobrePage extends StatelessWidget {
                 _buildTeamMember(
                   context,
                   name: 'Pedro Henrique Bachiega',
-                  role: 'Desenvolvedor Full Stack',
+                  role: 'Desenvolvedor',
                   imagePath: 'assets/images/pedrobachiega.png',
                   githubUrl: 'https://github.com/pedrohbachiega',
                 ),
@@ -46,42 +46,28 @@ class SobrePage extends StatelessWidget {
                   name: 'Pedro Henrique Scabelo',
                   role: 'Desenvolvedor Front-end',
                   imagePath: 'assets/images/pedroscabelo.png',
-                  githubUrl: 'https://github.com',
-                ),
-                _buildTeamMember(
-                  context,
-                  name: 'Matheus',
-                  role: 'Design e UX/UI',
-                  imagePath: 'assets/images/matheus.png',
-                  githubUrl: 'https://github.com',
+                  githubUrl: 'https://github.com/PedroHS05',
                 ),
                 _buildTeamMember(
                   context,
                   name: 'Pedro de Souza',
                   role: 'Desenvolvedor Back-End',
                   imagePath: 'assets/images/pedrosouza.png',
-                  githubUrl: 'https://github.com',
+                  githubUrl: 'https://github.com/Pedro4Albuquerque',
                 ),
                 _buildTeamMember(
                   context,
                   name: 'Vitor Hugo',
                   role: 'Padrão / Dev',
                   imagePath: 'assets/images/vitor.png',
-                  githubUrl: 'https://github.com',
-                ),
-                _buildTeamMember(
-                  context,
-                  name: 'Geysa',
-                  role: 'Designer',
-                  imagePath: 'assets/images/geysa.png',
-                  githubUrl: 'https://github.com',
+                  githubUrl: 'https://github.com/VitorBZS',
                 ),
                 _buildTeamMember(
                   context,
                   name: 'Igor',
                   role: 'Desenvolvedor',
                   imagePath: 'assets/images/igor.png',
-                  githubUrl: 'https://github.com',
+                  githubUrl: 'https://github.com/igorferreira083',
                 ),
               ],
             ),
@@ -107,7 +93,6 @@ class SobrePage extends StatelessWidget {
             backgroundColor: Colors.grey.shade300,
             backgroundImage: AssetImage(imagePath),
             onBackgroundImageError: (e, s) => debugPrint("Erro ao carregar $imagePath"),
-            child: const Icon(Icons.person, size: 50, color: Colors.white), // Fallback
           ),
           const SizedBox(height: 12),
           Text(
