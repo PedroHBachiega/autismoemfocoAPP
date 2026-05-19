@@ -6,8 +6,6 @@ Pedro Scabelo
 
 Vitor Bonilha
 
-Geysa Ribeiro
-
 Igor Ferreira
 
 Pedro Albuquerque
