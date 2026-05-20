@@ -23,11 +23,13 @@ class AppScaffold extends StatelessWidget {
   }
 
   @override
-
   Widget build(BuildContext context) {
-    final isDark = context.select((ThemeProvider theme) => theme.isDark);
-    final isLoggedIn = context.select((AuthProvider auth) => auth.user != null);
-    
+  final isDark = context.select((ThemeProvider theme) => theme.isDark);
+  final authProvider = context.watch<AuthProvider>(); // Pega o provider
+  final isLoggedIn = authProvider.user != null;
+  final isAdmin = authProvider.userProfile?['userType'] == 'admin';
+  final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Autismo em Foco'),
@@ -52,61 +54,93 @@ class AppScaffold extends StatelessWidget {
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
+        child: Column(
           children: [
+            // Cabeçalho do Drawer
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
+                color: theme.primaryColor,
               ),
-              child: const Text(
-                'Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+              child: const Center(
+                child: Text(
+                  'Menu',
+                  style: TextStyle(
+                    color: Colors.white,
+                    
+                    fontSize: 24,
+                  ),
                 ),
               ),
             ),
+            
+            // Área expansível com os itens do topo
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  if (isAdmin)
+                  ListTile(
+                    leading: const Icon(Icons.security, color: Colors.red),
+                    title: const Text('Área do Administrador', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                    onTap: () {
+                      context.pop();
+                      context.push('/admin');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.info),
+                    title: const Text('Sobre o Autismo'),
+                    onTap: () {
+                      context.pop();
+                      context.push('/sobreautismo');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.medical_services),
+                    title: const Text('Tratamentos'),
+                    onTap: () {
+                      context.pop();
+                      context.push('/tratamentos');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.gavel),
+                    title: const Text('Leis e Direitos'),
+                    onTap: () {
+                      context.pop();
+                      context.push('/leisedireitos');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.event_available),
+                    title: const Text('Meus Agendamentos'),
+                    onTap: () {
+                      context.pop();
+                      context.push('/meus-agendamentos');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.group),
+                    title: const Text('Sobre a Equipe'),
+                    onTap: () {
+                      context.pop();
+                      context.push('/sobre');
+                    },
+                  ),
+                ],
+              ),
+            ),
+
+            const Divider(),
             ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text('Sobre o Autismo'),
+              leading: const Icon(Icons.question_mark), // Ícone alterado para FAQ
+              title: const Text('Dúvidas Frequentes'),
               onTap: () {
                 context.pop();
-                context.go('/sobreautismo');
+                context.push('/faq');
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.medical_services),
-              title: const Text('Tratamentos'),
-              onTap: () {
-                context.pop();
-                context.go('/tratamentos');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.gavel),
-              title: const Text('Leis e Direitos'),
-              onTap: () {
-                context.pop();
-                context.go('/leisedireitos');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.event_available),
-              title: const Text('Meus Agendamentos'),
-              onTap: () {
-                context.pop();
-                context.go('/meus-agendamentos');
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.group),
-              title: const Text('Sobre a Equipe'),
-              onTap: () {
-                context.pop();
-                context.go('/sobre');
-              },
-            ),
+            const SizedBox(height: 8), // Margem de segurança inferior
           ],
         ),
       ),
@@ -145,7 +179,7 @@ class AppScaffold extends StatelessWidget {
             case 1:
               context.go('/eventos');
               break;
-              case 2:
+            case 2:
               context.go('/agendamento');
               break;
             case 3:

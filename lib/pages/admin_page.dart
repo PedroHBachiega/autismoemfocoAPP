@@ -9,7 +9,6 @@ class AdminPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Painel Administrativo'),
-        backgroundColor: Colors.blueGrey.shade800,
         foregroundColor: Colors.white,
       ),
       body: GridView.count(
@@ -37,15 +36,8 @@ class AdminPage extends StatelessWidget {
             icon: Icons.people,
             title: 'Gerenciar Usuários',
             color: Colors.green,
-            route: null, // Placeholder pro futuro
-          ),
-          _buildAdminAction(
-            context,
-            icon: Icons.calendar_month,
-            title: 'Agendamentos',
-            color: Colors.orange,
-            route: null, // Placeholder pro futuro
-          ),
+            route: '/gerenciar-usuarios', 
+          ),         
         ],
       ),
     );

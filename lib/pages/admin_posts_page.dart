@@ -44,7 +44,6 @@ class AdminPostsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gerenciar Posts'),
-        backgroundColor: Colors.blueGrey.shade800,
         foregroundColor: Colors.white,
       ),
       body: StreamBuilder<QuerySnapshot>(
