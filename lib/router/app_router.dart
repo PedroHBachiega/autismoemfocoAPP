@@ -1,3 +1,4 @@
+import 'package:autismo_em_foco_flutter/pages/gerenciar-usuarios.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/auth_provider.dart';
@@ -52,7 +53,7 @@ GoRouter createRouter(AuthProvider authProvider) {
 
       final publicRoutes = [
         '/', '/login', '/register', '/recuperar-senha',
-        '/sobreautismo', '/tratamentos', '/sobre', '/leisedireitos', '/eventos'
+        '/sobreautismo', '/tratamentos', '/sobre', '/leisedireitos', '/eventos', '/faq'
       ];
       
       final bool isPublicRoute = publicRoutes.contains(state.uri.path);
@@ -103,6 +104,7 @@ GoRouter createRouter(AuthProvider authProvider) {
           GoRoute(path: '/admin', builder: (context, state) => const AdminPage()),
           GoRoute(path: '/admin/posts', builder: (context, state) => const AdminPostsPage()),
           GoRoute(path: '/cadastro-evento', builder: (context, state) => const CadastroEventoPage()),
+          GoRoute(path: '/gerenciar-usuarios', builder: (context, state) => const GerenciarUsuariosPage()),
         ],
       ),
     ],

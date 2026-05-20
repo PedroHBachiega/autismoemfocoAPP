@@ -13,9 +13,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  // 1. Movemos os Providers para cá! 
-  // Eles envolvem o MyApp, então o MyApp pode ler o AuthProvider no initState.
+  
   runApp(
     MultiProvider(
       providers: [
@@ -36,27 +34,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // 2. O roteador agora é criado uma única vez aqui
   late final GoRouter _router;
 
   @override
   void initState() {
     super.initState();
-    // Como o Provider está acima de MyApp agora, isso funciona perfeitamente:
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     _router = createRouter(authProvider);
   }
 
   @override
-  Widget build(BuildContext context) {
-    // 3. O MaterialApp agora só escuta o ThemeProvider
+  Widget build(BuildContext context) 
+  {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, _) {
         return MaterialApp.router(
           title: 'Autismo em Foco',
           debugShowCheckedModeBanner: false,
           theme: themeProvider.currentTheme,
-          routerConfig: _router, // A mesma instância, sempre!
+          routerConfig: _router, 
         );
       },
     );
